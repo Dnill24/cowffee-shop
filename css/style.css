@@ -6,6 +6,9 @@
   --bg-color: #fff;
   --text-color: #222;
   --card-bg: #fff;
+
+  --home-bg: #fdfdfd;
+  --menu-bg: #f7f7f7;
 }
 
 [data-theme="dark"] {
@@ -13,6 +16,9 @@
   --bg-color: #121212;
   --text-color: #f5f5f5;
   --card-bg: #1e1e1e;
+
+  --home-bg: #1a1a1a;
+  --menu-bg: #181818;
 }
 
 body {
@@ -267,11 +273,12 @@ input:checked + .slider:before {
 
 /* ================= HOME ================= */
 .home {
-    min-height: 100vh;
-    padding-top: 12rem;
-    background: url(../image/home-bg.jpg) no-repeat;
-    background-position: center;
-    background-size: cover;
+  min-height: 100vh;
+  padding-top: 12rem;
+  background: var(--home-bg); /* switched from image */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .home .row {
