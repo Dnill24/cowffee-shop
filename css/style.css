@@ -629,3 +629,50 @@ section {
         width: 100%;
     }
 }
+
+
+
+
+/* HIDE NAVBAR BY DEFAULT */
+.header .navbar {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* SHOW NAVBAR ON HOVER */
+.header:hover .navbar {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+@media (min-width: 769px) {
+  .header .navbar {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .header:hover .navbar {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
