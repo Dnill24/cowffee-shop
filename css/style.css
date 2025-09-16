@@ -9,6 +9,10 @@
   --icon-filter: none; /* default for light mode */
   --home-bg: #fdfdfd;
   --menu-bg: #f7f7f7;
+  --border-radius: 1.5rem;
+  --border-radius-hover: 2rem;
+  --img-radius: 1rem;
+  --card-radius: 1.8rem;
 }
 
 [data-theme="dark"] {
@@ -16,7 +20,7 @@
   --bg-color: #121212;
   --text-color: #f5f5f5;
   --card-bg: #1e1e1e;
-  --icon-filter: brightness(0) invert(1);
+  --icon-filter: brightness(0) invert(1); /* ✅ invert icons in dark mode */
   --home-bg: #1a1a1a;
   --menu-bg: #181818;
 }
@@ -216,7 +220,6 @@ section { padding: 2rem 9%; }
 .footer .credit span { border-bottom: var(--border-hover); }
 
 /* ================= THEME SLIDER ================= */
-/* From Uiverse.io by satyamchaudharydev */
 .switch {
   display: block;
   --width-of-switch: 3.5em;
@@ -270,7 +273,6 @@ input:checked + .slider:before {
               inset -10px -4px 0 0 #a3dafb;
 }
 
-
 /* ================= HOME ================= */
 .home {
   min-height: 100vh;
@@ -301,6 +303,7 @@ input:checked + .slider:before {
 .home .row .image img {
     height: 35rem;
     animation: float 4s linear infinite;
+    border-radius: var(--img-radius); /* ✅ rounded */
 }
 
 @keyframes float {
@@ -324,16 +327,14 @@ input:checked + .slider:before {
     margin: 0 .5rem;
     cursor: pointer;
     margin-top: 5rem;
+    border-radius: var(--img-radius); /* ✅ rounded */
 }
 
 .home .image-slider img:hover {
     transform: translateY(-2rem);
 }
 
-
-
 /* ================= ABOUT ================= */
-
 .about .row {
     display: flex;
     align-items: center;
@@ -347,6 +348,7 @@ input:checked + .slider:before {
 
 .about .row .image img {
     width: 100%;
+    border-radius: var(--img-radius); /* ✅ rounded */
     animation: aboutImage 4s linear infinite;
 }
 
@@ -398,7 +400,6 @@ input:checked + .slider:before {
 }
 
 /* ================= MENU ================= */
-
 .menu {
   background: var(--menu-bg); /* switched from image */
   padding: 5rem 0;
@@ -415,7 +416,7 @@ input:checked + .slider:before {
   flex: 1 1 42rem;
   padding: 2rem;
   border: var(--border);
-  border-radius: var(--border-radius);
+  border-radius: var(--card-radius); /* ✅ rounded */
   display: flex;
   align-items: center;
   gap: 1.5rem;
@@ -434,8 +435,10 @@ input:checked + .slider:before {
   height: 8rem;
   margin-left: -6rem;
   object-fit: contain;
-  background: transparent;   /* keep coffee cup visible */
-  filter: none;              /* prevent dark-mode inversion */
+  background: transparent;
+  filter: var(--icon-filter); /* ✅ adapt filter */
+  transition: filter 0.3s ease;
+  border-radius: var(--img-radius); /* ✅ rounded */
 }
 
 .menu .box-container .box .content h3 {
@@ -458,7 +461,6 @@ input:checked + .slider:before {
 }
 
 /* ================= REVIEW ================= */
-
 .review .review-slider {
     padding: 7rem 0;
 }
@@ -510,7 +512,6 @@ input:checked + .slider:before {
 .swiper-pagination-bullet-active { background: var(--main-color); }
 
 /* ================= BOOK ================= */
-
 .book {
     background: url(../image/book-bg.jpg);
     background-position: center;
@@ -541,7 +542,6 @@ input:checked + .slider:before {
 .book form textarea { height: 15rem; resize: none; }
 
 /* ================= CART ================= */
-
 .add-to-cart {
   display: inline-block;
   padding: .7rem 1.5rem;
@@ -576,7 +576,7 @@ input:checked + .slider:before {
   padding: 1.5rem;
   border: var(--border);
   border-radius: var(--border-radius);
-  background: var(--card-bg);   /* ✅ uses theme variable */
+  background: var(--card-bg);   /* ✅ adapts to theme */
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   transition: background 0.3s ease, color 0.3s ease;
 }
@@ -585,7 +585,7 @@ input:checked + .slider:before {
   width: 90px;
   height: 90px;
   object-fit: cover;
-  border-radius: var(--border-radius);
+  border-radius: var(--img-radius); /* ✅ rounded */
 }
 
 .cart-item .item-info {
@@ -602,7 +602,7 @@ input:checked + .slider:before {
 
 .cart-item .item-price {
   font-size: 1.8rem;
-  color: var(--text-color-secondary, #666);  /* ✅ secondary text */
+  color: var(--text-color-secondary, #666);
 }
 
 .cart-controls {
@@ -634,7 +634,7 @@ input:checked + .slider:before {
   font-size: 1.6rem;
   min-width: 20px;
   text-align: center;
-  color: var(--text-color);  /* ✅ adapt to theme */
+  color: var(--text-color);
 }
 
 
