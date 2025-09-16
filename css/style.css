@@ -6,7 +6,7 @@
   --bg-color: #fff;
   --text-color: #222;
   --card-bg: #fff;
-
+  --icon-filter: none; /* default for light mode */
   --home-bg: #fdfdfd;
   --menu-bg: #f7f7f7;
 }
@@ -16,7 +16,7 @@
   --bg-color: #121212;
   --text-color: #f5f5f5;
   --card-bg: #1e1e1e;
-
+  --icon-filter: brightness(0) invert(1);
   --home-bg: #1a1a1a;
   --menu-bg: #181818;
 }
@@ -275,7 +275,7 @@ input:checked + .slider:before {
 .home {
   min-height: 100vh;
   padding-top: 12rem;
-  background: var(--home-bg); /* switched from image */
+  background: var(--home-bg); 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -330,7 +330,6 @@ input:checked + .slider:before {
     transform: translateY(-2rem);
 }
 
-/* (rest of your sections like about, menu, review, book, cart remain unchanged) */
 
 
 /* ================= ABOUT ================= */
@@ -401,56 +400,61 @@ input:checked + .slider:before {
 /* ================= MENU ================= */
 
 .menu {
-    background: url(../image/menu-bg.jpg) no-repeat;
-    background-position: center;
-    background-size: cover;
+  background: var(--menu-bg); /* switched from image */
+  padding: 5rem 0;
 }
 
 .menu .box-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
 }
 
 .menu .box-container .box {
-    flex: 1 1 42rem;
-    padding: 2rem;
-    border: var(--border);
-    border-radius: var(--border-radius);
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-left: 6rem;
+  flex: 1 1 42rem;
+  padding: 2rem;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: 6rem;
+  background: var(--card-bg);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: background .3s, border .3s;
 }
 
 .menu .box-container .box:hover {
-    border: var(--border-hover);
-    border-radius: var(--border-radius-hover);
+  border: var(--border-hover);
+  border-radius: var(--border-radius-hover);
 }
 
 .menu .box-container .box img {
-    height: 8rem;
-    margin-left: -6rem;
+  height: 8rem;
+  margin-left: -6rem;
+  object-fit: contain;
+  background: transparent;   /* keep coffee cup visible */
+  filter: none;              /* prevent dark-mode inversion */
 }
 
 .menu .box-container .box .content h3 {
-    font-size: 2.2rem;
-    color: var(--main-color);
-    line-height: 1.8;
+  font-size: 2.2rem;
+  color: var(--main-color);
+  line-height: 1.8;
 }
 
 .menu .box-container .box .content p {
-    font-size: 1.6rem;
-    color: var(--main-color);
-    line-height: 1.8;
-    padding: 1rem 0;
+  font-size: 1.6rem;
+  color: var(--text-color);
+  line-height: 1.8;
+  padding: 1rem 0;
 }
 
 .menu .box-container .box .content span {
-    font-size: 2rem;
-    color: var(--main-color);
-    line-height: 1.8;
+  font-size: 2rem;
+  color: var(--main-color);
+  line-height: 1.8;
 }
 
 /* ================= REVIEW ================= */
@@ -661,10 +665,14 @@ input:checked + .slider:before {
         flex-flow: column;
         text-align: center;
     }
-    .menu .box-container .box img {
-        margin-left: 0;
-        margin-top: -6rem;
-    }
+   .menu .box-container .box img {
+  height: 8rem;
+  margin-left: -6rem;
+  object-fit: contain;
+  background: transparent;
+  filter: var(--icon-filter); /* apply filter depending on theme */
+  transition: filter 0.3s ease;
+}
 }
 
 @media (max-width: 450px) {
