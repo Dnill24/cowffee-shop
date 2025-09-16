@@ -71,18 +71,27 @@ section {
 
 /* HEADER */
 
+
+
+/* HIDE HEADER BY DEFAULT */
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1000;
-    background: #fff;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
-    padding: 2rem 9%;
+  position: fixed;
+  top: -80px; /* move it above the screen */
+  left: 0;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+  padding: 2rem 9%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  transition: top 0.3s ease;
+}
+
+/* SHOW HEADER ON HOVER */
+.header:hover {
+  top: 0;
 }
 
 .header .logo {
@@ -633,27 +642,7 @@ section {
 
 
 
-/* HIDE NAVBAR BY DEFAULT */
-.header .navbar {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.3s ease;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: #fff;
-  padding: 1rem 2rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
 
-/* SHOW NAVBAR ON HOVER */
-.header:hover .navbar {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
 
 @media (min-width: 769px) {
   .header .navbar {
