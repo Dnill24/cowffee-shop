@@ -153,23 +153,21 @@ if (document.getElementById("cart-items")) {
 }
 });
 
-// ===== THEME TOGGLE WITH SLIDER =====
+// ===== THEME TOGGLE =====
 const themeToggle = document.getElementById("theme-toggle");
 
-if (themeToggle) {
-  // Load saved theme
-  if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark");
-    themeToggle.checked = true;
-  }
+// Load saved theme from localStorage
+const savedTheme = localStorage.getItem("theme") || "light";
+document.documentElement.setAttribute("data-theme", savedTheme);
+themeToggle.checked = savedTheme === "dark";
 
-  themeToggle.addEventListener("change", () => {
-    if (themeToggle.checked) {
-      document.body.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.body.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  });
-}
+// Listen for toggle changes
+themeToggle.addEventListener("change", () => {
+  if (themeToggle.checked) {
+    document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("theme", "dark");
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light");
+  }
+});

@@ -2,29 +2,39 @@
 
 /* ================= THEME VARIABLES ================= */
 :root {
-  --bg-color: #ffffff;
-  --text-color: #222222;
   --main-color: #443;
+  --bg-color: #fff;
+  --text-color: #222;
   --card-bg: #fff;
-
-  --border-radius: 95% 4% 97% 5% / 4% 94% 3% 95%;
-  --border-radius-hover: 4% 95% 6% 95% / 95% 4% 92% 5%;
-  --border: .2rem solid var(--main-color);
-  --border-hover: .2rem dashed var(--main-color);
 }
 
-body.dark {
+[data-theme="dark"] {
+  --main-color: #ddd;
   --bg-color: #121212;
-  --text-color: #f0f0f0;
-  --main-color: #d9a066;
+  --text-color: #f5f5f5;
   --card-bg: #1e1e1e;
 }
 
-/* Apply variables globally */
 body {
   background: var(--bg-color);
   color: var(--text-color);
-  transition: background .3s ease, color .3s ease;
+}
+
+/* Apply theme colors globally */
+.header,
+.footer,
+.cart-item,
+.menu .box-container .box,
+.book form {
+  background: var(--card-bg);
+}
+
+.header .logo,
+.header .navbar a,
+.footer,
+.cart-item .item-name,
+.cart-item .item-price {
+  color: var(--text-color);
 }
 
 /* Components using theme background */
