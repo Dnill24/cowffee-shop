@@ -628,3 +628,18 @@ section {
     html { font-size: 50%; }
     .home .row .image img { height: auto; width: 100%; }
 }
+
+.remove-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #c00;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform .2s;
+}
+
+.remove-btn:hover {
+  transform: scale(1.2);
+  color: #900;
+}
