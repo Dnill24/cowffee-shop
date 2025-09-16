@@ -515,7 +515,6 @@ section {
   height: 90px;
   object-fit: cover;
   border-radius: var(--border-radius);
-  border: var(--border);
 }
 
 .cart-item .item-info {
