@@ -575,6 +575,37 @@ section {
 .cart-item .item-name { font-size: 2rem; font-weight: 600; color: var(--main-color); }
 .cart-item .item-price { font-size: 1.8rem; color: #666; }
 
+.cart-controls {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  margin-left: auto;
+}
+
+.cart-controls button {
+  background: none;
+  border: var(--border);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: var(--main-color);
+  transition: all 0.2s ease;
+}
+
+.cart-controls button:hover {
+  background: var(--main-color);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.cart-controls .quantity {
+  font-size: 1.6rem;
+  min-width: 20px;
+  text-align: center;
+}
+
 /* ================= MEDIA QUERIES ================= */
 
 @media (max-width: 991px) {
@@ -643,3 +674,5 @@ section {
   transform: scale(1.2);
   color: #900;
 }
+
+
