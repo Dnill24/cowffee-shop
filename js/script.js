@@ -1,3 +1,4 @@
+// ===== NAVBAR TOGGLE =====
 let menu = document.querySelector('#menu-btn');
 let navbar = document.querySelector('.navbar');
 
@@ -11,6 +12,7 @@ window.onscroll = () => {
     navbar.classList.remove('active');
 };
 
+// ===== HOME IMAGE SLIDER =====
 document.querySelectorAll('.image-slider img').forEach(images => {
     images.onclick = () => {
         var src = images.getAttribute('src');
@@ -18,6 +20,7 @@ document.querySelectorAll('.image-slider img').forEach(images => {
     };
 });
 
+// ===== REVIEW SLIDER =====
 var swiper = new Swiper(".review-slider", {
     spaceBetween: 20,
     pagination: {
@@ -38,4 +41,58 @@ var swiper = new Swiper(".review-slider", {
             slidesPerView: 2
         }
     },
+});
+
+// ===== SHOPPING CART =====
+document.addEventListener("DOMContentLoaded", () => {
+    const cartItemsList = document.getElementById("cart-items");
+    const cartTotalElement = document.getElementById("cart-total");
+    const checkoutBtn = document.getElementById("checkout-btn");
+
+    let cart = [];
+    let total = 0;
+
+    // Add items to cart
+    document.querySelectorAll(".add-to-cart").forEach(button => {
+        button.addEventListener("click", () => {
+            const box = button.closest(".box");
+            const name = button.getAttribute("data-name");
+            const price = parseFloat(button.getAttribute("data-price"));
+            const imgSrc = box.querySelector("img").src; // ✅ get coffee image
+
+            // Save item
+            cart.push({ name, price, imgSrc });
+            total += price;
+
+            // Update UI
+            const li = document.createElement("li");
+            li.classList.add("cart-item");
+            li.innerHTML = `
+                <img src="${imgSrc}" alt="${name}">
+                <div class="item-info">
+                    <span class="item-name">${name}</span>
+                    <span class="item-price">$${price.toFixed(2)}</span>
+                </div>
+            `;
+            cartItemsList.appendChild(li);
+
+            cartTotalElement.textContent = total.toFixed(2);
+        });
+    });
+
+    // Checkout button
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener("click", () => {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+            } else {
+                alert("Thanks for your order! Total: $" + total.toFixed(2));
+                // Reset cart
+                cart = [];
+                total = 0;
+                cartItemsList.innerHTML = "";
+                cartTotalElement.textContent = "0.00";
+            }
+        });
+    }
 });

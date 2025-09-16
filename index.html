@@ -89,66 +89,82 @@
         </div>
     </section>
 
-    <!-- MENU -->
-    <section class="menu" id="menu">
-        <h1 class="heading">our menu <span>popular picks</span></h1>
+   <!-- MENU -->
+<section class="menu" id="menu">
+  <h1 class="heading">our menu <span>popular picks</span></h1>
 
-        <div class="box-container">
-            <a href="#" class="box">
-                <img src="image/menu-1.png" alt="Espresso Bliss">
-                <div class="content">
-                    <h3>Espresso Bliss</h3>
-                    <p>Pure, strong, and bold. A shot of happiness for true coffee lovers.</p>
-                    <span>$8.99</span>
-                </div>
-            </a>
+  <div class="box-container">
 
-            <a href="#" class="box">
-                <img src="image/menu-2.png" alt="Caramel Dream Latte">
-                <div class="content">
-                    <h3>Caramel Dream Latte</h3>
-                    <p>Creamy milk meets silky caramel for the perfect sweet treat.</p>
-                    <span>$8.99</span>
-                </div>
-            </a>
+    <div class="box">
+      <img src="image/menu-1.png" alt="Espresso Bliss">
+      <div class="content">
+        <h3>Espresso Bliss</h3>
+        <p>Pure, strong, and bold. A shot of happiness for true coffee lovers.</p>
+        <span>$8.99</span>
+        <button class="add-to-cart" data-name="Espresso Bliss" data-price="8.99">Add to Cart</button>
+      </div>
+    </div>
 
-            <a href="#" class="box">
-                <img src="image/menu-3.png" alt="Mocha Magic">
-                <div class="content">
-                    <h3>Mocha Magic</h3>
-                    <p>A chocolatey twist on your classic coffee — smooth, rich, and dreamy.</p>
-                    <span>$8.99</span>
-                </div>
-            </a>
+    <div class="box">
+      <img src="image/menu-2.png" alt="Caramel Dream Latte">
+      <div class="content">
+        <h3>Caramel Dream Latte</h3>
+        <p>Creamy milk meets silky caramel for the perfect sweet treat.</p>
+        <span>$8.99</span>
+        <button class="add-to-cart" data-name="Caramel Dream Latte" data-price="8.99">Add to Cart</button>
+      </div>
+    </div>
 
-            <a href="#" class="box">
-                <img src="image/menu-4.png" alt="Vanilla Velvet Cappuccino">
-                <div class="content">
-                    <h3>Vanilla Velvet Cappuccino</h3>
-                    <p>Light, foamy, and kissed with a hint of sweet vanilla bliss.</p>
-                    <span>$8.99</span>
-                </div>
-            </a>
+    <div class="box">
+      <img src="image/menu-3.png" alt="Mocha Magic">
+      <div class="content">
+        <h3>Mocha Magic</h3>
+        <p>A chocolatey twist on your classic coffee — smooth, rich, and dreamy.</p>
+        <span>$8.99</span>
+        <button class="add-to-cart" data-name="Mocha Magic" data-price="8.99">Add to Cart</button>
+      </div>
+    </div>
 
-            <a href="#" class="box">
-                <img src="image/menu-5.png" alt="Hazelnut Heaven">
-                <div class="content">
-                    <h3>Hazelnut Heaven</h3>
-                    <p>A nutty aroma blended with smooth coffee for an unforgettable taste.</p>
-                    <span>$8.99</span>
-                </div>
-            </a>
+    <div class="box">
+      <img src="image/menu-4.png" alt="Vanilla Velvet Cappuccino">
+      <div class="content">
+        <h3>Vanilla Velvet Cappuccino</h3>
+        <p>Light, foamy, and kissed with a hint of sweet vanilla bliss.</p>
+        <span>$8.99</span>
+        <button class="add-to-cart" data-name="Vanilla Velvet Cappuccino" data-price="8.99">Add to Cart</button>
+      </div>
+    </div>
 
-            <a href="#" class="box">
-                <img src="image/menu-6.png" alt="Iced Cowffee Latte">
-                <div class="content">
-                    <h3>Iced Cowffee Latte</h3>
-                    <p>Chill out with our refreshing iced latte, brewed cold and smooth.</p>
-                    <span>$8.99</span>
-                </div>
-            </a>
-        </div>
-    </section>
+    <div class="box">
+      <img src="image/menu-5.png" alt="Hazelnut Heaven">
+      <div class="content">
+        <h3>Hazelnut Heaven</h3>
+        <p>A nutty aroma blended with smooth coffee for an unforgettable taste.</p>
+        <span>$8.99</span>
+        <button class="add-to-cart" data-name="Hazelnut Heaven" data-price="8.99">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="box">
+      <img src="image/menu-6.png" alt="Iced Cowffee Latte">
+      <div class="content">
+        <h3>Iced Cowffee Latte</h3>
+        <p>Chill out with our refreshing iced latte, brewed cold and smooth.</p>
+        <span>$8.99</span>
+        <button class="add-to-cart" data-name="Iced Cowffee Latte" data-price="8.99">Add to Cart</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cart" id="cart">
+  <h1 class="heading">Your Cart</h1>
+  <ul id="cart-items"></ul>
+  <p class="total">Total: $<span id="cart-total">0.00</span></p>
+  <button class="btn" id="checkout-btn">Checkout</button>
+</section>
+
 
     <!-- REVIEW -->
     <section class="review" id="review">
