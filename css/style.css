@@ -74,13 +74,14 @@ section {
 
 
 /* HIDE HEADER BY DEFAULT */
+/* HEADER hidden above screen */
 .header {
   position: fixed;
-  top: -80px; /* move it above the screen */
+  top: -100px; /* move it above the viewport */
   left: 0;
   right: 0;
   background: #fff;
-  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
   padding: 2rem 9%;
   display: flex;
   align-items: center;
@@ -89,10 +90,22 @@ section {
   transition: top 0.3s ease;
 }
 
-/* SHOW HEADER ON HOVER */
+/* Invisible hover zone at very top */
+.header-trigger {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px; /* thin strip */
+  z-index: 999;
+}
+
+/* Show header when hovering trigger or header itself */
+.header-trigger:hover + .header,
 .header:hover {
   top: 0;
 }
+
 
 .header .logo {
     color: var(--main-color);
