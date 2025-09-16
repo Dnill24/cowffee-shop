@@ -436,9 +436,9 @@ input:checked + .slider:before {
   margin-left: -6rem;
   object-fit: contain;
   background: transparent;
-  filter: var(--icon-filter); /* ✅ adapt filter */
-  transition: filter 0.3s ease;
-  border-radius: var(--img-radius); /* ✅ rounded */
+  filter: none !important;   /* ✅ coffee cups never change */
+  transition: transform 0.3s ease;
+  border-radius: var(--img-radius);
 }
 
 .menu .box-container .box .content h3 {
@@ -681,13 +681,13 @@ input:checked + .slider:before {
         flex-flow: column;
         text-align: center;
     }
-   .menu .box-container .box img {
+  .menu .box-container .box img {
   height: 8rem;
   margin-left: -6rem;
   object-fit: contain;
   background: transparent;
-  filter: var(--icon-filter); /* apply filter depending on theme */
-  transition: filter 0.3s ease;
+  filter: none !important;   /* ✅ coffee cups never change */
+  border-radius: var(--img-radius);
 }
 }
 
