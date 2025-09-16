@@ -1,72 +1,95 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
 
+/* ================= THEME VARIABLES ================= */
 :root {
-    --main-color: #443;
-    --border-radius: 95% 4% 97% 5% / 4% 94% 3% 95%;
-    --border-radius-hover: 4% 95% 6% 95% / 95% 4% 92% 5%;
-    --border: .2rem solid var(--main-color);
-    --border-hover: .2rem dashed var(--main-color);
+  --bg-color: #ffffff;
+  --text-color: #222222;
+  --main-color: #443;
+  --card-bg: #fff;
+
+  --border-radius: 95% 4% 97% 5% / 4% 94% 3% 95%;
+  --border-radius-hover: 4% 95% 6% 95% / 95% 4% 92% 5%;
+  --border: .2rem solid var(--main-color);
+  --border-hover: .2rem dashed var(--main-color);
+}
+
+body.dark {
+  --bg-color: #121212;
+  --text-color: #f0f0f0;
+  --main-color: #d9a066;
+  --card-bg: #1e1e1e;
+}
+
+/* Apply variables globally */
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background .3s ease, color .3s ease;
+}
+
+/* Components using theme background */
+header, footer, .box, .cart-item, .menu .box-container .box {
+  background: var(--card-bg);
+  transition: background .3s ease, color .3s ease;
 }
 
 * {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    outline: none;
-    border: none;
-    text-decoration: none;
-    text-transform: capitalize;
-    transition: all .2s linear;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all .2s linear;
 }
 
 html {
-    font-size: 62.5%;
-    overflow-x: hidden;
-    scroll-padding-top: 7rem;
-    scroll-behavior: smooth;
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 7rem;
+  scroll-behavior: smooth;
 }
 
-section {
-    padding: 2rem 9%;
-}
+section { padding: 2rem 9%; }
 
 .heading {
-    font-size: 9rem;
-    text-transform: uppercase;
-    color: transparent;
-    -webkit-text-stroke: .05rem var(--main-color);
-    letter-spacing: .2rem;
-    text-align: center;
-    pointer-events: none;
-    position: relative;
+  font-size: 9rem;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: .05rem var(--main-color);
+  letter-spacing: .2rem;
+  text-align: center;
+  pointer-events: none;
+  position: relative;
 }
 
 .heading span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    color: var(--main-color);
-    font-size: 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  color: var(--main-color);
+  font-size: 3rem;
 }
 
 .btn {
-    display: inline-block;
-    padding: .9rem 1.5rem;
-    border: var(--border);
-    border-radius: var(--border-radius);
-    color: var(--main-color);
-    background: none;
-    cursor: pointer;
-    margin-top: 1rem;
-    font-size: 1.7rem;
+  display: inline-block;
+  padding: .9rem 1.5rem;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  color: var(--main-color);
+  background: none;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-size: 1.7rem;
 }
 
 .btn:hover {
-    border-radius: var(--border-radius-hover);
-    border: var(--border-hover);
+  border-radius: var(--border-radius-hover);
+  border: var(--border-hover);
 }
 
 /* ================= HEADER ================= */
@@ -75,7 +98,7 @@ section {
   top: 0;
   left: 0;
   right: 0;
-  background: #fff;
+  background: var(--card-bg);
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
   padding: 1.5rem 9%;
   display: flex;
@@ -85,14 +108,14 @@ section {
 }
 
 .header .logo {
-    color: var(--main-color);
-    font-size: 2.3rem;
-    font-weight: 600;
+  color: var(--main-color);
+  font-size: 2.3rem;
+  font-weight: 600;
 }
 
 .header .logo i {
-    padding-left: .5rem;
-    color: var(--main-color);
+  padding-left: .5rem;
+  color: var(--main-color);
 }
 
 /* Navbar hidden by default */
@@ -101,7 +124,7 @@ section {
   top: 100%;
   left: 0;
   right: 0;
-  background: #666(0, 1%, 22%, 1.00);
+  background: var(--card-bg);
   box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .1);
   opacity: 0;
   visibility: hidden;
@@ -118,21 +141,20 @@ section {
 }
 
 .header .navbar a {
-    display: inline-block;
-    margin: 0 1.5rem;
-    font-size: 1.7rem;
-    color: var(--main-color);
-    padding: .7rem 1.2rem;
-    border-radius: var(--border-radius);
-    transition: background .3s;
+  display: inline-block;
+  margin: 0 1.5rem;
+  font-size: 1.7rem;
+  color: var(--main-color);
+  padding: .7rem 1.2rem;
+  border-radius: var(--border-radius);
+  transition: background .3s;
 }
 
 .header .navbar a:hover {
-    background: var(--main-color);
-    color: #fff;
+  background: var(--main-color);
+  color: #fff;
 }
 
-/* Encourage hover: subtle underline animation */
 .header::after {
   content: "▼ Menu";
   position: absolute;
@@ -145,120 +167,93 @@ section {
 }
 
 /* ================= FOOTER ================= */
-/* ================= HEADER ================= */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: #fff;
-  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
-  padding: 1.5rem 9%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 1000;
-}
-
-.header .logo {
-    color: var(--main-color);
-    font-size: 2.3rem;
-    font-weight: 600;
-}
-
-.header .logo i {
-    padding-left: .5rem;
-    color: var(--main-color);
-}
-
-/* Navbar hidden by default */
-.header .navbar {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: #fff;
-  box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .1);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all .3s ease;
-  text-align: center;
-  padding: 1rem 0;
-}
-
-.header:hover .navbar {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.header .navbar a {
-    display: inline-block;
-    margin: 0 1.5rem;
-    font-size: 1.7rem;
-    color: var(--main-color);
-    padding: .7rem 1.2rem;
-    border-radius: var(--border-radius);
-    transition: background .3s;
-}
-
-.header .navbar a:hover {
-    background: var(--main-color);
-    color: #fff;
-}
-
-/* Encourage hover: subtle underline animation */
-.header::after {
-  content: "▼ Menu";
-  position: absolute;
-  bottom: -1.8rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.3rem;
-  color: #666;
-  opacity: 0.8;
-}
-
-/* ================= FOOTER (REVERTED) ================= */
 .footer .box-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
-    gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
+  gap: 1.5rem;
 }
 
 .footer .box-container .box h3 {
-    font-size: 2.5rem;
-    padding: 1rem 0;
-    color: var(--main-color);
+  font-size: 2.5rem;
+  padding: 1rem 0;
+  color: var(--main-color);
 }
 
 .footer .box-container .box a {
-    display: block;
-    font-size: 1.5rem;
-    padding: 1rem 0;
-    color: var(--main-color);
+  display: block;
+  font-size: 1.5rem;
+  padding: 1rem 0;
+  color: var(--main-color);
 }
 
-.footer .box-container .box a i {
-    padding-right: .5rem;
-}
-
-.footer .box-container .box a:hover i {
-    padding-right: 2rem;
-}
+.footer .box-container .box a i { padding-right: .5rem; }
+.footer .box-container .box a:hover i { padding-right: 2rem; }
 
 .footer .credit {
-    text-align: center;
-    font-size: 2rem;
-    padding: 2rem 1rem;
-    margin-top: 1rem;
-    color: var(--main-color);
+  text-align: center;
+  font-size: 2rem;
+  padding: 2rem 1rem;
+  margin-top: 1rem;
+  color: var(--main-color);
 }
 
-.footer .credit span {
-    border-bottom: var(--border-hover);
+.footer .credit span { border-bottom: var(--border-hover); }
+
+/* ================= THEME SLIDER ================= */
+/* From Uiverse.io by satyamchaudharydev */
+.switch {
+  display: block;
+  --width-of-switch: 3.5em;
+  --height-of-switch: 2em;
+  --size-of-icon: 1.4em;
+  --slider-offset: 0.3em;
+  position: relative;
+  width: var(--width-of-switch);
+  height: var(--height-of-switch);
 }
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f4f4f5;
+  transition: .4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: var(--size-of-icon);
+  width: var(--size-of-icon);
+  border-radius: 20px;
+  left: var(--slider-offset);
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(40deg,#ff0080,#ff8c00 70%);
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #303136;
+}
+
+input:checked + .slider:before {
+  left: calc(100% - (var(--size-of-icon) + var(--slider-offset)));
+  background: #303136;
+  box-shadow: inset -3px -2px 5px -2px #8983f7,
+              inset -10px -4px 0 0 #a3dafb;
+}
+
 
 /* ================= HOME ================= */
 .home {
