@@ -172,12 +172,12 @@ section { padding: 2rem 9%; }
 }
 
 .header::after {
-  content: "▼";
+  content: "Navigate";
   position: absolute;
   bottom: -1.8rem;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 3rem;
+  font-size: 1.3rem;
   color: #666;
   opacity: 0.8;
 }
