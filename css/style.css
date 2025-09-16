@@ -70,128 +70,115 @@ section {
 }
 
 /* ================= HEADER ================= */
-
-/* hidden above screen */
 .header {
   position: fixed;
-  top: -100px;
+  top: 0;
   left: 0;
   right: 0;
   background: #fff;
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
-  padding: 2rem 9%;
+  padding: 1.5rem 9%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 1000;
-  transition: top 0.3s ease;
-}
-
-/* invisible hover trigger at top */
-.header-trigger {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 20px;
-  z-index: 999;
-}
-
-/* slide down header when hovered */
-.header-trigger:hover + .header,
-.header:hover {
-  top: 0;
 }
 
 .header .logo {
     color: var(--main-color);
     font-size: 2.3rem;
+    font-weight: 600;
 }
 
 .header .logo i {
     padding-left: .5rem;
-}
-
-.header .navbar a {
-    margin: 0 1rem;
-    font-size: 1.7rem;
     color: var(--main-color);
 }
 
-.header .btn {
-    margin-top: 0;
-}
-
-#menu-btn {
-    font-size: 3rem;
-    color: var(--main-color);
-    cursor: pointer;
-    display: none;
-}
-
-/* ================= FOOTER ================= */
-
-/* hidden below screen */
-.footer {
-  position: fixed;
-  bottom: -200px;
+/* Navbar hidden by default */
+.header .navbar {
+  position: absolute;
+  top: 100%;
   left: 0;
   right: 0;
   background: #fff;
-  box-shadow: 0 -.5rem 1rem rgba(0, 0, 0, .1);
-  padding: 2rem 9%;
-  z-index: 1000;
-  transition: bottom 0.3s ease;
+  box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all .3s ease;
+  text-align: center;
+  padding: 1rem 0;
 }
 
-/* invisible hover trigger at bottom */
-.footer-trigger {
+.header:hover .navbar {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.header .navbar a {
+    display: inline-block;
+    margin: 0 1.5rem;
+    font-size: 1.7rem;
+    color: var(--main-color);
+    padding: .7rem 1.2rem;
+    border-radius: var(--border-radius);
+    transition: background .3s;
+}
+
+.header .navbar a:hover {
+    background: var(--main-color);
+    color: #fff;
+}
+
+/* Encourage hover: subtle underline animation */
+.header::after {
+  content: "▼ Menu";
+  position: absolute;
+  bottom: -1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.3rem;
+  color: #666;
+  opacity: 0.8;
+}
+
+/* ================= FOOTER ================= */
+.footer {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 20px;
-  z-index: 999;
-}
-
-/* slide up footer when hovered */
-.footer-trigger:hover + .footer,
-.footer:hover {
-  bottom: 0;
+  background: #fff;
+  box-shadow: 0 -.3rem .6rem rgba(0, 0, 0, .1);
+  padding: 1rem 5%;
+  z-index: 1000;
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .footer .box-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
-    gap: 1.5rem;
+    display: flex;
+    gap: 2rem;
 }
 
 .footer .box-container .box h3 {
-    font-size: 2.5rem;
-    padding: 1rem 0;
+    font-size: 1.6rem;
     color: var(--main-color);
 }
 
 .footer .box-container .box a {
-    display: block;
-    font-size: 1.5rem;
-    padding: 1rem 0;
+    font-size: 1.3rem;
     color: var(--main-color);
-}
-
-.footer .box-container .box a i {
-    padding-right: .5rem;
-}
-
-.footer .box-container .box a:hover i {
-    padding-right: 2rem;
+    display: block;
+    margin: .3rem 0;
 }
 
 .footer .credit {
-    text-align: center;
-    font-size: 2rem;
-    padding: 2rem 1rem;
-    margin-top: 1rem;
+    font-size: 1.3rem;
     color: var(--main-color);
 }
 
@@ -200,7 +187,6 @@ section {
 }
 
 /* ================= HOME ================= */
-
 .home {
     min-height: 100vh;
     padding-top: 12rem;
@@ -257,6 +243,9 @@ section {
 .home .image-slider img:hover {
     transform: translateY(-2rem);
 }
+
+/* (rest of your sections like about, menu, review, book, cart remain unchanged) */
+
 
 /* ================= ABOUT ================= */
 
