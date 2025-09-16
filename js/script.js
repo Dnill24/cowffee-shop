@@ -5,6 +5,24 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(res => res.text())
       .then(data => {
         document.getElementById("header-placeholder").innerHTML = data;
+
+        // ===== THEME TOGGLE (only works after header loads) =====
+        const themeToggle = document.getElementById("theme-toggle");
+        const savedTheme = localStorage.getItem("theme") || "light";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+        if (themeToggle) themeToggle.checked = savedTheme === "dark";
+
+        if (themeToggle) {
+          themeToggle.addEventListener("change", () => {
+            if (themeToggle.checked) {
+              document.documentElement.setAttribute("data-theme", "dark");
+              localStorage.setItem("theme", "dark");
+            } else {
+              document.documentElement.setAttribute("data-theme", "light");
+              localStorage.setItem("theme", "light");
+            }
+          });
+        }
       });
   }
 
@@ -47,127 +65,107 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ===== SHOPPING CART =====
+  if (document.getElementById("cart-items")) {
+    const cartItemsList = document.getElementById("cart-items");
+    const cartTotalElement = document.getElementById("cart-total");
+    const checkoutBtn = document.getElementById("checkout-btn");
 
-// ===== SHOPPING CART =====
-if (document.getElementById("cart-items")) {
-  const cartItemsList = document.getElementById("cart-items");
-  const cartTotalElement = document.getElementById("cart-total");
-  const checkoutBtn = document.getElementById("checkout-btn");
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    // Render cart items
+    function renderCart() {
+      cartItemsList.innerHTML = "";
+      let total = 0;
 
-  // Render cart items
-  function renderCart() {
-    cartItemsList.innerHTML = "";
-    let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price * item.quantity;
 
-    cart.forEach((item, index) => {
-      total += item.price * item.quantity;
-
-      const li = document.createElement("li");
-      li.classList.add("cart-item");
-      li.innerHTML = `
-        <img src="${item.imgSrc}" alt="${item.name}">
-        <div class="item-info">
-          <span class="item-name">${item.name}</span>
-          <span class="item-price">$${item.price.toFixed(2)} × ${item.quantity}</span>
-        </div>
-        <div class="cart-controls">
-          <button class="decrease-btn" data-index="${index}">−</button>
-          <span class="quantity">${item.quantity}</span>
-          <button class="increase-btn" data-index="${index}">+</button>
-          <button class="remove-btn" data-index="${index}">✖</button>
-        </div>
-      `;
-      cartItemsList.appendChild(li);
-    });
-
-    cartTotalElement.textContent = total.toFixed(2);
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    // Hook buttons
-    document.querySelectorAll(".increase-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const index = btn.getAttribute("data-index");
-        cart[index].quantity++;
-        renderCart();
+        const li = document.createElement("li");
+        li.classList.add("cart-item");
+        li.innerHTML = `
+          <img src="${item.imgSrc}" alt="${item.name}">
+          <div class="item-info">
+            <span class="item-name">${item.name}</span>
+            <span class="item-price">$${item.price.toFixed(2)} × ${item.quantity}</span>
+          </div>
+          <div class="cart-controls">
+            <button class="decrease-btn" data-index="${index}">−</button>
+            <span class="quantity">${item.quantity}</span>
+            <button class="increase-btn" data-index="${index}">+</button>
+            <button class="remove-btn" data-index="${index}">✖</button>
+          </div>
+        `;
+        cartItemsList.appendChild(li);
       });
-    });
 
-    document.querySelectorAll(".decrease-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const index = btn.getAttribute("data-index");
-        if (cart[index].quantity > 1) {
-          cart[index].quantity--;
-        } else {
+      cartTotalElement.textContent = total.toFixed(2);
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      // Hook buttons
+      document.querySelectorAll(".increase-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const index = btn.getAttribute("data-index");
+          cart[index].quantity++;
+          renderCart();
+        });
+      });
+
+      document.querySelectorAll(".decrease-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const index = btn.getAttribute("data-index");
+          if (cart[index].quantity > 1) {
+            cart[index].quantity--;
+          } else {
+            cart.splice(index, 1);
+          }
+          renderCart();
+        });
+      });
+
+      document.querySelectorAll(".remove-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const index = btn.getAttribute("data-index");
           cart.splice(index, 1);
+          renderCart();
+        });
+      });
+    }
+
+    // Add to cart
+    document.querySelectorAll(".add-to-cart").forEach(button => {
+      button.addEventListener("click", () => {
+        const name = button.getAttribute("data-name");
+        const price = parseFloat(button.getAttribute("data-price"));
+        const imgSrc = button.closest(".box").querySelector("img").src;
+
+        // Check if already in cart
+        const existing = cart.find(item => item.name === name);
+        if (existing) {
+          existing.quantity++;
+        } else {
+          cart.push({ name, price, imgSrc, quantity: 1 });
         }
+
         renderCart();
       });
     });
 
-    document.querySelectorAll(".remove-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const index = btn.getAttribute("data-index");
-        cart.splice(index, 1);
-        renderCart();
+    // Checkout
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener("click", () => {
+        if (cart.length === 0) {
+          alert("Your cart is empty!");
+        } else {
+          const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+          alert("Thanks for your order! Total: $" + total.toFixed(2));
+          cart = [];
+          renderCart();
+        }
       });
-    });
-  }
+    }
 
-  // Add to cart
-  document.querySelectorAll(".add-to-cart").forEach(button => {
-    button.addEventListener("click", () => {
-      const name = button.getAttribute("data-name");
-      const price = parseFloat(button.getAttribute("data-price"));
-      const imgSrc = button.closest(".box").querySelector("img").src;
-
-      // Check if already in cart
-      const existing = cart.find(item => item.name === name);
-      if (existing) {
-        existing.quantity++;
-      } else {
-        cart.push({ name, price, imgSrc, quantity: 1 });
-      }
-
-      renderCart();
-    });
-  });
-
-  // Checkout
-  if (checkoutBtn) {
-    checkoutBtn.addEventListener("click", () => {
-      if (cart.length === 0) {
-        alert("Your cart is empty!");
-      } else {
-        const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-        alert("Thanks for your order! Total: $" + total.toFixed(2));
-        cart = [];
-        renderCart();
-      }
-    });
-  }
-
-  // Initial load
-  renderCart();
-}
-});
-
-// ===== THEME TOGGLE =====
-const themeToggle = document.getElementById("theme-toggle");
-
-// Load saved theme from localStorage
-const savedTheme = localStorage.getItem("theme") || "light";
-document.documentElement.setAttribute("data-theme", savedTheme);
-themeToggle.checked = savedTheme === "dark";
-
-// Listen for toggle changes
-themeToggle.addEventListener("change", () => {
-  if (themeToggle.checked) {
-    document.documentElement.setAttribute("data-theme", "dark");
-    localStorage.setItem("theme", "dark");
-  } else {
-    document.documentElement.setAttribute("data-theme", "light");
-    localStorage.setItem("theme", "light");
+    // Initial load
+    renderCart();
   }
 });
