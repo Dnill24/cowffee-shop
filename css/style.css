@@ -145,40 +145,114 @@ section {
 }
 
 /* ================= FOOTER ================= */
-.footer {
+/* ================= HEADER ================= */
+.header {
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
   background: #fff;
-  box-shadow: 0 -.3rem .6rem rgba(0, 0, 0, .1);
-  padding: 1rem 5%;
-  z-index: 1000;
-  font-size: 1.3rem;
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+  padding: 1.5rem 9%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
 }
 
+.header .logo {
+    color: var(--main-color);
+    font-size: 2.3rem;
+    font-weight: 600;
+}
+
+.header .logo i {
+    padding-left: .5rem;
+    color: var(--main-color);
+}
+
+/* Navbar hidden by default */
+.header .navbar {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all .3s ease;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.header:hover .navbar {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.header .navbar a {
+    display: inline-block;
+    margin: 0 1.5rem;
+    font-size: 1.7rem;
+    color: var(--main-color);
+    padding: .7rem 1.2rem;
+    border-radius: var(--border-radius);
+    transition: background .3s;
+}
+
+.header .navbar a:hover {
+    background: var(--main-color);
+    color: #fff;
+}
+
+/* Encourage hover: subtle underline animation */
+.header::after {
+  content: "▼ Menu";
+  position: absolute;
+  bottom: -1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.3rem;
+  color: #666;
+  opacity: 0.8;
+}
+
+/* ================= FOOTER (REVERTED) ================= */
 .footer .box-container {
-    display: flex;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
+    gap: 1.5rem;
 }
 
 .footer .box-container .box h3 {
-    font-size: 1.6rem;
+    font-size: 2.5rem;
+    padding: 1rem 0;
     color: var(--main-color);
 }
 
 .footer .box-container .box a {
-    font-size: 1.3rem;
-    color: var(--main-color);
     display: block;
-    margin: .3rem 0;
+    font-size: 1.5rem;
+    padding: 1rem 0;
+    color: var(--main-color);
+}
+
+.footer .box-container .box a i {
+    padding-right: .5rem;
+}
+
+.footer .box-container .box a:hover i {
+    padding-right: 2rem;
 }
 
 .footer .credit {
-    font-size: 1.3rem;
+    text-align: center;
+    font-size: 2rem;
+    padding: 2rem 1rem;
+    margin-top: 1rem;
     color: var(--main-color);
 }
 
