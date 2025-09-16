@@ -2,26 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Customer Reviews - Cowffee</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <title>Cowffee Reviews</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="header"> ...same header here... </header>
+<header class="header">
+  <div id="menu-btn" class="fas fa-bars"></div>
+  <a href="index.html" class="logo">cowffee <i class="fas fa-mug-hot"></i></a>
+  <nav class="navbar">
+    <a href="index.html">home</a>
+    <a href="about.html">about</a>
+    <a href="menu.html">menu</a>
+    <a href="reviews.html" class="active">reviews</a>
+    <a href="book.html">book</a>
+  </nav>
+</header>
 
-  <!-- REVIEWS -->
-  <section class="review">
-    <h1 class="heading">reviews <span>what our customers say</span></h1>
-    <div class="swiper review-slider"> ...your swiper slides... </div>
-  </section>
+<section class="review">
+  <h1 class="heading">reviews <span>what our customers say</span></h1>
+  <div class="swiper review-slider">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide box">
+        <img src="image/pic-1.png" alt="">
+        <p>“Absolutely love Cowffee!”</p>
+        <h3>Emily Johnson</h3>
+      </div>
+      <!-- add other review slides -->
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <section class="footer"> ...same footer here... </section>
-  <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-  <script src="js/script.js"></script>
+<section class="footer"> ...footer... </section>
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
