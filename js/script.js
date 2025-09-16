@@ -2,97 +2,92 @@
 let menu = document.querySelector('#menu-btn');
 let navbar = document.querySelector('.navbar');
 
-menu.onclick = () => {
+if (menu && navbar) {
+  menu.onclick = () => {
     menu.classList.toggle('fa-times');
     navbar.classList.toggle('active');
-};
+  };
 
-window.onscroll = () => {
+  window.onscroll = () => {
     menu.classList.remove('fa-times');
     navbar.classList.remove('active');
-};
+  };
+}
 
 // ===== HOME IMAGE SLIDER =====
-document.querySelectorAll('.image-slider img').forEach(images => {
+if (document.querySelectorAll('.image-slider img').length) {
+  document.querySelectorAll('.image-slider img').forEach(images => {
     images.onclick = () => {
-        var src = images.getAttribute('src');
-        document.querySelector('.main-home-image').src = src;
+      var src = images.getAttribute('src');
+      document.querySelector('.main-home-image').src = src;
     };
-});
+  });
+}
 
 // ===== REVIEW SLIDER =====
-var swiper = new Swiper(".review-slider", {
+if (document.querySelector(".review-slider")) {
+  var swiper = new Swiper(".review-slider", {
     spaceBetween: 20,
     pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
+      el: ".swiper-pagination",
+      clickable: true,
     },
     loop: true,
     grabCursor: true,
     autoplay: {
-        delay: 7500,
-        disableOnInteraction: false,
+      delay: 7500,
+      disableOnInteraction: false,
     },
     breakpoints: {
-        0: {
-            slidesPerView: 1
-        },
-        768: {
-            slidesPerView: 2
-        }
+      0: { slidesPerView: 1 },
+      768: { slidesPerView: 2 }
     },
-});
+  });
+}
 
 // ===== SHOPPING CART =====
-document.addEventListener("DOMContentLoaded", () => {
-    const cartItemsList = document.getElementById("cart-items");
-    const cartTotalElement = document.getElementById("cart-total");
-    const checkoutBtn = document.getElementById("checkout-btn");
+if (document.getElementById("cart-items")) {
+  const cartItemsList = document.getElementById("cart-items");
+  const cartTotalElement = document.getElementById("cart-total");
+  const checkoutBtn = document.getElementById("checkout-btn");
 
-    let cart = [];
-    let total = 0;
+  let cart = [];
+  let total = 0;
 
-    // Add items to cart
-    document.querySelectorAll(".add-to-cart").forEach(button => {
-        button.addEventListener("click", () => {
-            const box = button.closest(".box");
-            const name = button.getAttribute("data-name");
-            const price = parseFloat(button.getAttribute("data-price"));
-            const imgSrc = box.querySelector("img").src; // ✅ get coffee image
+  document.querySelectorAll(".add-to-cart").forEach(button => {
+    button.addEventListener("click", () => {
+      const name = button.getAttribute("data-name");
+      const price = parseFloat(button.getAttribute("data-price"));
+      const imgSrc = button.closest(".box").querySelector("img").src;
 
-            // Save item
-            cart.push({ name, price, imgSrc });
-            total += price;
+      cart.push({ name, price, imgSrc });
+      total += price;
 
-            // Update UI
-            const li = document.createElement("li");
-            li.classList.add("cart-item");
-            li.innerHTML = `
-                <img src="${imgSrc}" alt="${name}">
-                <div class="item-info">
-                    <span class="item-name">${name}</span>
-                    <span class="item-price">$${price.toFixed(2)}</span>
-                </div>
-            `;
-            cartItemsList.appendChild(li);
+      const li = document.createElement("li");
+      li.classList.add("cart-item");
+      li.innerHTML = `
+        <img src="${imgSrc}" alt="${name}">
+        <div class="item-info">
+          <span class="item-name">${name}</span>
+          <span class="item-price">$${price.toFixed(2)}</span>
+        </div>`;
+      cartItemsList.appendChild(li);
 
-            cartTotalElement.textContent = total.toFixed(2);
-        });
+      cartTotalElement.textContent = total.toFixed(2);
     });
+  });
 
-    // Checkout button
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener("click", () => {
-            if (cart.length === 0) {
-                alert("Your cart is empty!");
-            } else {
-                alert("Thanks for your order! Total: $" + total.toFixed(2));
-                // Reset cart
-                cart = [];
-                total = 0;
-                cartItemsList.innerHTML = "";
-                cartTotalElement.textContent = "0.00";
-            }
-        });
-    }
-});
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener("click", () => {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+      } else {
+        alert("Thanks for your order! Total: $" + total.toFixed(2));
+        cart = [];
+        total = 0;
+        cartItemsList.innerHTML = "";
+        cartTotalElement.textContent = "0.00";
+      }
+    });
+  }
+}
